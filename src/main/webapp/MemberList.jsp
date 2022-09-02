@@ -13,12 +13,13 @@
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/smalllogo.png" />
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+		<jsp:include page="BackendHeader.jsp" />
+		<jsp:include page="Style.jsp"/>
 	<c:if test="${sessionScope.user == null}"><%
 	request.getRequestDispatcher("/Login.jsp").forward(request, response);
 	%></c:if>
-	<br>
-	<div>
+	<br><br><br>
+	<div align="center">
 	<a href="AddNewUser.jsp">新增會員</a>
 	</div>
 	

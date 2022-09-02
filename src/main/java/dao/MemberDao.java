@@ -1,4 +1,4 @@
-package bean;
+package dao;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
+import bean.MemberBean;
 import util.HibernateUtil;
 
 public class MemberDao {

@@ -46,10 +46,11 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setMaxInactiveInterval(60*60*60);
 			session.setAttribute("user", result);
+			System.out.println("權限:"+response.getStatus());
 			if (result.getStatus() == 3) {
 				request.getRequestDispatcher("/Index.jsp").forward(request, response);
 			}else {
-				request.getRequestDispatcher("/Index.jsp").forward(request, response);
+				request.getRequestDispatcher("/BackendIndex.jsp").forward(request, response);
 			}
 
 		} else {

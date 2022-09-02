@@ -9,51 +9,75 @@
 <head>
 <meta charset="UTF-8">
 <title>新增使用者</title>
-<link rel="shortcut icon" type="image/x-icon" href="assets/images/smalllogo.png" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="assets/images/smalllogo.png" />
 <style>
+.tb {
+	margin-left: 300px;
+	
+}
+.addmember-title{
+	
+}
+
 </style>
 </head>
-<header>
-	<div>
-		<h2>
-			<c:if test="${mb != null}">
-                        修改會員
-                    </c:if>
-			<c:if test="${mb == null}">
-                        新增會員
-                    </c:if>
-		</h2>
-	</div>
-</header>
 
-<hr>
 
 <body>
-	<jsp:include page="header.jsp" />
-	<c:if test="${sessionScope.user == null}"><% request.getRequestDispatcher("/Login.jsp").forward(request, response); %></c:if>
-	<%String action=""; %>
+	<jsp:include page="BackendHeader.jsp" />
+	<jsp:include page="Style.jsp" />
+	<br>
+	<br>
+	<br>
+	<c:if test="${sessionScope.user == null}">
+		<%
+		request.getRequestDispatcher("/Login.jsp").forward(request, response);
+		%>
+	</c:if>
+	<%
+	String action = "";
+	%>
+
 	<c:if test="${mb != null}">
 		<%
-		 action = "update";
+		action = "update";
 		%>
 
 	</c:if>
 	<c:if test="${mb == null}">
 		<%
-		 action = "insert";
+		action = "insert";
 		%>
 
 	</c:if>
-	<form action="AdminServlet?action=<%=action %>" method="post"
+	<header>
+	<br><br>
+	
+		<div align="center">
+			<h2>
+				<c:if test="${mb != null}">
+                        修改會員
+                    </c:if>
+				<c:if test="${mb == null}">
+                        新增會員
+                    </c:if>
+			</h2>
+		</div>
+	</header>
+
+	<hr>
+	<form action="AdminServlet?action=<%=action%>" method="post"
 		onSubmit="return checkNull(this)">
-		<table cellspacing="2" cellpadding="1" border="1" width="60%">
+		<table class="tb" cellspacing="2" cellpadding="1" border="50"
+			width="60%">
 
 			<c:if test="${mb != null}">
 				<input type="hidden" name="user_id" value="${mb.user_id}" />
 			</c:if>
 			<tr>
-				<td>綽號:</td>
-				<td><input type="text" title="綽號" name="nick" size="10"
+				<td class="addmember-title">綽號:</td>
+				<td ><input type="text" title="綽號" name="nick" size="10"
 					maxlength="10" " value="<c:out value='${mb.nick}' />" />(請輸入0~10個字)</td>
 			</tr>
 			<tr>
@@ -112,23 +136,26 @@
 					maxlength="20" value="<c:out value='${mb.joinDate}' />" /></td>
 			</tr>
 
-			<br>
-			<div>
-				<input type="submit" value="儲存" />
-			</div>
+
+
 		</table>
-		<script type="text/javascript">
-			function checkNull(form) {
-				for (i = 0; i < form.length; i++) {
-					if (form.elements[i].value == "") {
-						alert("【 " + form.elements[i].title + " 】" + "不能為空!!!");
-						form.elements[i].focus(); //當前元素獲取焦點
-						return false;
-					}
-				}
-			}
-		</script>
+		<div align="center">
+			<input type="submit" value="儲存" />
+		</div>
 
 	</form>
+	<script type="text/javascript">
+		function checkNull(form) {
+			for (i = 0; i < form.length; i++) {
+				if (form.elements[i].value == "") {
+					alert("【 " + form.elements[i].title + " 】" + "不能為空!!!");
+					form.elements[i].focus(); //當前元素獲取焦點
+					return false;
+				}
+			}
+		}
+	</script>
+
+
 </body>
 </html>

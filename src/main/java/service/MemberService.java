@@ -3,7 +3,7 @@ package service;
 import java.util.List;
 
 import bean.MemberBean;
-import bean.MemberDao;
+import dao.MemberDao;
 
 public class MemberService {
 
